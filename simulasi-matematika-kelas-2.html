@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petualangan Matematika - Kelas II SD</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#ffffff; --ink:#1f2a37; --muted:#64748b;
+    --line:#e2e8f0; --line2:#cbd5e1;
+    --info:#2563eb; --info-bg:#e6f1fb;
+    --success:#16a34a; --success-bg:#e7f6ec;
+    --danger:#dc2626; --danger-bg:#fdeaea;
+    --warning:#d97706; --warning-bg:#fdf0dc;
+    --r:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6;
+    display:flex; justify-content:center; padding:16px; min-height:100vh;
+  }
+  .wrap{width:100%; max-width:680px;}
+  .panel{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:22px 22px 26px;}
+  h1{margin:0 0 4px; font-size:26px; font-weight:800;}
+  .sub{font-size:13px; color:var(--muted);}
+  button{font-family:inherit;}
+  .topic{
+    display:flex; align-items:center; gap:12px; padding:14px; cursor:pointer;
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+    text-align:left; transition:.15s; font-size:15px;
+  }
+  .topic:hover{border-color:var(--line2); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.06);}
+  .ico{width:46px; height:46px; min-width:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px;}
+  .tname{display:block; font-weight:800;}
+  .tdesc{display:block; font-size:12px; color:var(--muted); font-weight:600;}
+  .topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .btn{padding:8px 14px; cursor:pointer; font-size:14px; font-weight:700; background:var(--card); border:1px solid var(--line2); border-radius:10px; color:var(--ink); transition:.15s;}
+  .btn:hover{background:var(--bg);}
+  .btn-primary{background:var(--info); color:#fff; border-color:var(--info);}
+  .bar-track{height:8px; background:var(--bg); border-radius:99px; overflow:hidden; margin-bottom:18px;}
+  .bar{height:100%; width:0; background:var(--info); transition:width .3s; border-radius:99px;}
+  .qtitle{font-size:13px; color:var(--muted); font-weight:700; text-align:center;}
+  .qbody{font-size:30px; font-weight:800; text-align:center; margin:10px 0 6px; min-height:30px;}
+  .qvisual{text-align:center; margin:0 0 18px;}
+  .opts{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .opt{padding:16px; font-size:20px; font-weight:800; cursor:pointer; background:var(--card); border:2px solid var(--line); border-radius:var(--r); transition:.12s;}
+  .opt:hover:enabled{border-color:var(--info); background:var(--info-bg);}
+  .opt:disabled{cursor:default;}
+  .opt.ok{background:var(--success-bg); border-color:var(--success); color:var(--success);}
+  .opt.no{background:var(--danger-bg); border-color:var(--danger); color:var(--danger);}
+  .feedback{text-align:center; margin-top:16px; min-height:26px; font-size:16px; font-weight:800;}
+  .center{text-align:center;}
+  .dot{width:18px; height:18px; border-radius:50%; background:var(--success); display:inline-block;}
+  .medal{font-size:56px;}
+  .hide{display:none;}
+  .star{color:var(--warning);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HOME -->
+  <div id="home" class="panel center">
+    <div class="sub" style="margin-bottom:6px;">Gemar Matematika · Kelas II SD · Kurikulum Merdeka</div>
+    <h1>🎒 Petualangan Matematika</h1>
+    <p class="sub" style="margin:0 0 20px;">Pilih topik yang mau kamu pelajari hari ini!</p>
+    <div class="grid">
+      <button class="topic" data-topic="banding"><span class="ico" style="background:var(--info-bg); color:var(--info);">↔️</span><span><span class="tname">Bandingkan Bilangan</span><span class="tdesc">Lebih besar atau kecil?</span></span></button>
+      <button class="topic" data-topic="tambah"><span class="ico" style="background:var(--success-bg); color:var(--success);">➕</span><span><span class="tname">Tambah &amp; Kurang</span><span class="tdesc">Hitung sampai 500</span></span></button>
+      <button class="topic" data-topic="kali"><span class="ico" style="background:var(--warning-bg); color:var(--warning);">✖️</span><span><span class="tname">Kali &amp; Bagi</span><span class="tdesc">Perkalian dasar</span></span></button>
+      <button class="topic" data-topic="waktu"><span class="ico" style="background:var(--info-bg); color:var(--info);">🕐</span><span><span class="tname">Membaca Jam</span><span class="tdesc">Pukul berapa ini?</span></span></button>
+      <button class="topic" data-topic="bangun"><span class="ico" style="background:var(--danger-bg); color:var(--danger);">🔷</span><span><span class="tname">Bangun Datar</span><span class="tdesc">Kenali bentuknya</span></span></button>
+      <button class="topic" data-topic="campur"><span class="ico" style="background:var(--warning-bg); color:var(--warning);">⭐</span><span><span class="tname">Tantangan Campur</span><span class="tdesc">Semua materi!</span></span></button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="panel hide">
+    <div class="topbar">
+      <button class="btn" id="back">← Menu</button>
+      <div class="sub">Soal <span id="qnum">1</span> dari <span id="qtot">5</span></div>
+      <div style="font-size:15px; font-weight:800;"><span class="star">⭐</span> <span id="score">0</span></div>
+    </div>
+    <div class="bar-track"><div class="bar" id="bar"></div></div>
+    <div class="qtitle" id="qtitle"></div>
+    <div class="qbody" id="qbody"></div>
+    <div class="qvisual" id="qvisual"></div>
+    <div class="opts" id="opts"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="center" style="margin-top:10px;">
+      <button class="btn btn-primary hide" id="next" style="padding:11px 26px; font-size:15px;">Lanjut →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="panel center hide">
+    <div class="medal" id="medal"></div>
+    <h1 id="rtitle" style="margin:8px 0 4px;"></h1>
+    <p class="sub" style="font-size:16px; margin:0 0 4px;">Skor kamu: <b id="rscore" style="color:var(--ink);"></b></p>
+    <p class="sub" id="rmsg" style="margin:0 0 20px;"></p>
+    <button class="btn btn-primary" id="again" style="padding:11px 26px; font-size:15px;">🔄 Coba topik lain</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var rnd=function(a,b){return Math.floor(Math.random()*(b-a+1))+a;};
+  var shuffle=function(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;};
+  var uniqOpts=function(correct,gen){var s=[correct];var guard=0;while(s.length<4&&guard<60){var v=gen();if(s.indexOf(v)<0)s.push(v);guard++;}return shuffle(s);};
+
+  var clockSVG=function(h,m){
+    var ha=(h%12)*30+m*0.5-90, ma=m*6-90;
+    var hr=ha*Math.PI/180, mr=ma*Math.PI/180;
+    var hx=60+30*Math.cos(hr), hy=60+30*Math.sin(hr);
+    var mx=60+44*Math.cos(mr), my=60+44*Math.sin(mr);
+    var ticks='';
+    for(var i=0;i<12;i++){var a=i*30*Math.PI/180;ticks+='<circle cx="'+(60+50*Math.cos(a))+'" cy="'+(60+50*Math.sin(a))+'" r="1.8" fill="#94a3b8"/>';}
+    return '<svg viewBox="0 0 120 120" width="140" height="140"><circle cx="60" cy="60" r="56" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>'+ticks+'<line x1="60" y1="60" x2="'+hx+'" y2="'+hy+'" stroke="#1f2a37" stroke-width="5" stroke-linecap="round"/><line x1="60" y1="60" x2="'+mx+'" y2="'+my+'" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="60" r="4.5" fill="#1f2a37"/></svg>';
+  };
+  var shapeSVG=function(type){
+    var c='#e6f1fb', s='#2563eb';
+    var w='<svg viewBox="0 0 120 110" width="130" height="120">';
+    if(type==='persegi') w+='<rect x="25" y="15" width="70" height="70" fill="'+c+'" stroke="'+s+'" stroke-width="3"/>';
+    else if(type==='persegi panjang') w+='<rect x="12" y="28" width="96" height="50" fill="'+c+'" stroke="'+s+'" stroke-width="3"/>';
+    else if(type==='segitiga') w+='<polygon points="60,12 105,88 15,88" fill="'+c+'" stroke="'+s+'" stroke-width="3"/>';
+    else if(type==='lingkaran') w+='<circle cx="60" cy="52" r="40" fill="'+c+'" stroke="'+s+'" stroke-width="3"/>';
+    return w+'</svg>';
+  };
+  var dots=function(n){
+    var out='<div style="display:inline-flex; flex-wrap:wrap; gap:6px; max-width:230px; justify-content:center;">';
+    for(var i=0;i<n;i++) out+='<span class="dot"></span>';
+    return out+'</div>';
+  };
+
+  var gens={
+    banding:function(){
+      var a=rnd(11,99),b=rnd(11,99); while(a===b)b=rnd(11,99);
+      return {title:'Mana yang lebih besar?', body:a+'   dan   '+b, visual:'',
+        opts:shuffle([{t:String(a),ok:a>b},{t:String(b),ok:b>a}])};
+    },
+    tambah:function(){
+      var op=Math.random()<0.5?'+':'-', ans, body;
+      if(op==='+'){var a=rnd(20,240),b=rnd(10,180);ans=a+b;body=a+' + '+b;}
+      else{var a2=rnd(80,499),b2=rnd(10,a2-1);ans=a2-b2;body=a2+' − '+b2;}
+      return {title:'Hitunglah', body:body+' = ?', visual:'',
+        opts:uniqOpts(ans,function(){return ans+rnd(-9,9);}).map(function(v){return {t:String(v),ok:v===ans};})};
+    },
+    kali:function(){
+      if(Math.random()<0.4){var b=rnd(2,9),h=rnd(2,9),a=b*h;
+        return {title:'Pembagian', body:a+' ÷ '+b+' = ?', visual:'',
+          opts:uniqOpts(h,function(){return h+rnd(-4,4);}).filter(function(v){return v>0;}).map(function(v){return {t:String(v),ok:v===h};})};
+      }
+      var a2=rnd(2,9),b2=rnd(2,9),ans=a2*b2;
+      return {title:'Perkalian', body:a2+' × '+b2+' = ?', visual:(ans<=30?dots(ans):''),
+        opts:uniqOpts(ans,function(){return ans+rnd(-6,6);}).map(function(v){return {t:String(v),ok:v===ans};})};
+    },
+    waktu:function(){
+      var h=rnd(1,12), mins=[0,15,30,45], m=mins[rnd(0,3)];
+      var label=h+'.'+(m<10?'0'+m:m);
+      var gen=function(){var hh=rnd(1,12),mm=mins[rnd(0,3)];return hh+'.'+(mm<10?'0'+mm:mm);};
+      return {title:'Pukul berapa ini?', body:'', visual:clockSVG(h,m),
+        opts:uniqOpts(label,gen).map(function(v){return {t:'Pukul '+v,ok:v===label};})};
+    },
+    bangun:function(){
+      var shapes=['persegi','persegi panjang','segitiga','lingkaran'], s=shapes[rnd(0,3)];
+      var gen=function(){return shapes[rnd(0,3)];};
+      return {title:'Apa nama bangun datar ini?', body:'', visual:shapeSVG(s),
+        opts:uniqOpts(s,gen).map(function(v){return {t:v.charAt(0).toUpperCase()+v.slice(1),ok:v===s};})};
+    }
+  };
+  gens.campur=function(){var k=['banding','tambah','kali','waktu','bangun'];return gens[k[rnd(0,4)]]();};
+
+  var state={topic:null,i:0,score:0,q:null,total:5};
+  var $=function(id){return document.getElementById(id);};
+  function show(v){['home','quiz','result'].forEach(function(x){$(x).classList.toggle('hide',x!==v);});}
+
+  function loadQ(){
+    var q=state.q=gens[state.topic]();
+    $('qnum').textContent=state.i+1; $('qtot').textContent=state.total;
+    $('qtitle').textContent=q.title; $('qbody').textContent=q.body||'';
+    $('qvisual').innerHTML=q.visual||'';
+    $('bar').style.width=(state.i/state.total*100)+'%';
+    $('feedback').textContent=''; $('next').classList.add('hide');
+    var opts=$('opts'); opts.innerHTML='';
+    q.opts.forEach(function(o){
+      var btn=document.createElement('button');
+      btn.className='opt'; btn.textContent=o.t;
+      btn.onclick=function(){answer(o,btn);};
+      opts.appendChild(btn);
+    });
+  }
+  function answer(o,btn){
+    var all=$('opts').querySelectorAll('button');
+    all.forEach(function(b){b.disabled=true;});
+    if(o.ok){
+      state.score++; $('score').textContent=state.score; btn.classList.add('ok');
+      $('feedback').innerHTML='<span style="color:var(--success);">✅ Hebat! Benar!</span>';
+    } else {
+      btn.classList.add('no');
+      all.forEach(function(b,idx){if(state.q.opts[idx].ok)b.classList.add('ok');});
+      $('feedback').innerHTML='<span style="color:var(--danger);">❌ Belum tepat, coba lagi ya!</span>';
+    }
+    $('bar').style.width=((state.i+1)/state.total*100)+'%';
+    $('next').classList.remove('hide');
+    $('next').textContent=(state.i+1>=state.total?'Lihat hasil 🏁':'Lanjut →');
+  }
+  $('next').onclick=function(){state.i++; if(state.i>=state.total)finish(); else loadQ();};
+  function finish(){
+    show('result');
+    var pct=state.score/state.total, medal,title,msg;
+    $('rscore').textContent=state.score+' / '+state.total;
+    if(pct>=0.8){medal='🏆';title='Luar Biasa!';msg='Kamu jago sekali! Pertahankan ya!';}
+    else if(pct>=0.5){medal='⭐';title='Bagus!';msg='Sudah bagus, ayo terus berlatih supaya makin pintar!';}
+    else{medal='💪';title='Tetap Semangat!';msg='Jangan menyerah, coba lagi pasti bisa lebih baik!';}
+    $('medal').textContent=medal; $('rtitle').textContent=title; $('rmsg').textContent=msg;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.topic'),function(b){
+    b.onclick=function(){state.topic=b.getAttribute('data-topic');state.i=0;state.score=0;$('score').textContent='0';show('quiz');loadQ();};
+  });
+  $('back').onclick=function(){show('home');};
+  $('again').onclick=function(){show('home');};
+})();
+</script>
+</body>
+</html>
